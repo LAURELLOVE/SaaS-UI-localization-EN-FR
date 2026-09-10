@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nimbus — UI Localization EN/FR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2EFE6; --surface:#FBFAF5; --surface-2:#EAE5D7;
+    --ink:#1C2430; --ink-soft:#5A6270;
+    --accent:#B96A21; --accent-soft:#E9C79A;
+    --teal:#3D6F65; --teal-soft:#CFE0DA;
+    --line:#DAD3C0; --line-strong:#C7BEA6; --radius:5px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:"IBM Plex Sans",sans-serif;}
+  h1,h2,h3{font-family:"Fraunces",serif; font-weight:500; margin:0;}
+  .mono{font-family:"IBM Plex Mono",monospace;}
+  .banner{background:var(--ink); color:var(--bg); padding:10px 20px; font-family:"IBM Plex Mono",monospace; font-size:.78rem; text-align:center;}
+  .banner b{color:var(--accent-soft);}
+
+  .app{display:grid; grid-template-columns:220px 1fr; min-height:640px;}
+  @media (max-width:760px){ .app{grid-template-columns:1fr;} }
+
+  .side{background:var(--ink); color:var(--bg); padding:26px 18px;}
+  .side .logo{font-family:"Fraunces",serif; font-style:italic; font-size:1.2rem; margin-bottom:30px;}
+  .side nav a{display:block; padding:10px 12px; border-radius:var(--radius); color:rgba(242,239,230,.75); text-decoration:none; font-size:.88rem; margin-bottom:4px;}
+  .side nav a.active{background:rgba(255,255,255,.08); color:#fff;}
+
+  .main{padding:28px 32px;}
+  .topbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:28px;}
+  .topbar h1{font-size:1.6rem;}
+
+  .lang-toggle{display:flex; border:1px solid var(--line-strong); border-radius:999px; overflow:hidden; font-family:"IBM Plex Mono",monospace; font-size:.78rem;}
+  .lang-toggle button{border:none; background:transparent; padding:8px 16px; cursor:pointer; color:var(--ink-soft);}
+  .lang-toggle button.active{background:var(--ink); color:var(--bg);}
+
+  .stat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:28px;}
+  .stat{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;}
+  .stat .lbl{font-size:.78rem; color:var(--ink-soft);}
+  .stat b{display:block; font-family:"IBM Plex Mono",monospace; font-size:1.6rem; margin-top:4px;}
+
+  table{width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  th,td{text-align:left; padding:12px 16px; font-size:.86rem; border-bottom:1px solid var(--line);}
+  th{font-family:"IBM Plex Mono",monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--ink-soft); background:var(--surface-2);}
+  .badge{font-family:"IBM Plex Mono",monospace; font-size:.72rem; padding:3px 9px; border-radius:999px;}
+  .badge.ok{background:var(--teal-soft); color:var(--teal);}
+  .badge.pending{background:var(--accent-soft); color:var(--accent);}
+
+  .notes{max-width:960px; margin:36px auto 0; padding:0 24px 40px;}
+  .notes .note{background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; font-size:.88rem; color:var(--ink-soft);}
+  .notes .note b{color:var(--ink); font-family:"IBM Plex Mono",monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; display:block; margin-bottom:6px;}
+  .kv{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; font-size:.84rem;}
+  .kv div{background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:10px 12px;}
+  .kv .k{font-family:"IBM Plex Mono",monospace; font-size:.72rem; color:var(--teal);}
+  footer{text-align:center; padding:26px 0; font-size:.8rem; color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<div class="banner">Sample project — a fictional SaaS dashboard demonstrating UI localization. <b>Built by Tambe Egbe Laura</b></div>
+
+<div class="app">
+  <div class="side">
+    <div class="logo">Nimbus</div>
+    <nav>
+      <a class="active" href="#" data-i18n="nav.dashboard">Dashboard</a>
+      <a href="#" data-i18n="nav.projects">Projects</a>
+      <a href="#" data-i18n="nav.team">Team</a>
+      <a href="#" data-i18n="nav.billing">Billing</a>
+      <a href="#" data-i18n="nav.settings">Settings</a>
+    </nav>
+  </div>
+  <div class="main">
+    <div class="topbar">
+      <h1 data-i18n="page.title">Dashboard</h1>
+      <div class="lang-toggle">
+        <button class="active" id="btnEN" onclick="setLang('en')">EN</button>
+        <button id="btnFR" onclick="setLang('fr')">FR</button>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat"><div class="lbl" data-i18n="stat.active">Active projects</div><b>18</b></div>
+      <div class="stat"><div class="lbl" data-i18n="stat.members">Team members</div><b>7</b></div>
+      <div class="stat"><div class="lbl" data-i18n="stat.storage">Storage used</div><b>62%</b></div>
+    </div>
+
+    <table>
+      <thead><tr>
+        <th data-i18n="th.project">Project</th>
+        <th data-i18n="th.owner">Owner</th>
+        <th data-i18n="th.updated">Last updated</th>
+        <th data-i18n="th.status">Status</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Landing Redesign</td><td>Amara K.</td><td data-i18n="date.1">2 days ago</td><td><span class="badge ok" data-i18n="status.done">Complete</span></td></tr>
+        <tr><td>Mobile Onboarding</td><td>Julien P.</td><td data-i18n="date.2">5 hours ago</td><td><span class="badge pending" data-i18n="status.review">In review</span></td></tr>
+        <tr><td>Billing v2</td><td>Sofia R.</td><td data-i18n="date.3">1 week ago</td><td><span class="badge ok" data-i18n="status.done">Complete</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="notes">
+  <div class="note">
+    <b>Localization approach</b>
+    Every UI string is pulled from a key/value dictionary (below), not hardcoded — so adding a third language is a data change, not a code change. French strings account for text expansion (~15–20% longer than English on average) and use French number/date conventions rather than a literal word-for-word swap.
+    <div class="kv">
+      <div><span class="k">nav.dashboard</span><br>Dashboard → Tableau de bord</div>
+      <div><span class="k">stat.storage</span><br>Storage used → Stockage utilisé</div>
+      <div><span class="k">status.review</span><br>In review → En relecture</div>
+      <div><span class="k">date.2</span><br>5 hours ago → il y a 5 heures</div>
+    </div>
+  </div>
+</div>
+
+<footer>Sample project by Tambe Egbe Laura — <a href="../../portfolio/index.html">back to portfolio</a></footer>
+
+<script>
+  const dict = {
+    en: {
+      'nav.dashboard':'Dashboard','nav.projects':'Projects','nav.team':'Team','nav.billing':'Billing','nav.settings':'Settings',
+      'page.title':'Dashboard',
+      'stat.active':'Active projects','stat.members':'Team members','stat.storage':'Storage used',
+      'th.project':'Project','th.owner':'Owner','th.updated':'Last updated','th.status':'Status',
+      'status.done':'Complete','status.review':'In review',
+      'date.1':'2 days ago','date.2':'5 hours ago','date.3':'1 week ago'
+    },
+    fr: {
+      'nav.dashboard':'Tableau de bord','nav.projects':'Projets','nav.team':'Équipe','nav.billing':'Facturation','nav.settings':'Paramètres',
+      'page.title':'Tableau de bord',
+      'stat.active':'Projets actifs','stat.members':'Membres de l’équipe','stat.storage':'Stockage utilisé',
+      'th.project':'Projet','th.owner':'Responsable','th.updated':'Dernière mise à jour','th.status':'Statut',
+      'status.done':'Terminé','status.review':'En relecture',
+      'date.1':'il y a 2 jours','date.2':'il y a 5 heures','date.3':'il y a 1 semaine'
+    }
+  };
+  function setLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[lang][key]) el.textContent = dict[lang][key];
+    });
+    document.getElementById('btnEN').classList.toggle('active', lang==='en');
+    document.getElementById('btnFR').classList.toggle('active', lang==='fr');
+    document.documentElement.lang = lang;
+  }
+</script>
+</body>
+</html>
